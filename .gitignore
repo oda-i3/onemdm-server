@@ -19,3 +19,6 @@
 /config/database.yml
 
 /coverage
+
+/.ruby-version
+/vendor/bundler

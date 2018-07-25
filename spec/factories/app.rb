@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :app do
     name "One MDM"
     package_name "com.multunus.onemdm"

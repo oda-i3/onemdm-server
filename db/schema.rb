@@ -13,16 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20160204094618) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
+    t.string   "namespace",     limit: 255
+    t.text     "body",          limit: 65535
+    t.string   "resource_id",   limit: 255,   null: false
+    t.string   "resource_type", limit: 255,   null: false
+    t.integer  "author_id",     limit: 4
+    t.string   "author_type",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,77 +29,77 @@ ActiveRecord::Schema.define(version: 20160204094618) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "app_usages", force: :cascade do |t|
-    t.string   "package_name",              null: false
-    t.integer  "usage_duration_in_seconds", null: false
-    t.date     "used_on",                   null: false
-    t.integer  "device_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "package_name",              limit: 255, null: false
+    t.integer  "usage_duration_in_seconds", limit: 4,   null: false
+    t.date     "used_on",                               null: false
+    t.integer  "device_id",                 limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "app_usages", ["device_id"], name: "index_app_usages_on_device_id", using: :btree
 
   create_table "apps", force: :cascade do |t|
-    t.string   "name"
-    t.string   "package_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "name",         limit: 255
+    t.string   "package_name", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "batch_installations", force: :cascade do |t|
-    t.integer  "app_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "app_id",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "batch_installations", ["app_id"], name: "index_batch_installations_on_app_id", using: :btree
 
   create_table "devices", force: :cascade do |t|
-    t.string   "model"
-    t.string   "unique_id"
-    t.string   "imei_number"
-    t.string   "access_token"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "heartbeats_count",         default: 0
+    t.string   "model",                    limit: 255
+    t.string   "unique_id",                limit: 255
+    t.string   "imei_number",              limit: 255
+    t.string   "access_token",             limit: 255
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "heartbeats_count",         limit: 4,   default: 0
     t.datetime "last_heartbeat_recd_time"
-    t.string   "gcm_token"
-    t.string   "client_version"
-    t.string   "os_version"
+    t.string   "gcm_token",                limit: 255
+    t.string   "client_version",           limit: 255
+    t.string   "os_version",               limit: 255
   end
 
   create_table "heartbeats", force: :cascade do |t|
-    t.integer  "device_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "device_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "heartbeats", ["device_id"], name: "index_heartbeats_on_device_id", using: :btree
 
   create_table "installations", force: :cascade do |t|
-    t.integer  "device_id"
-    t.integer  "batch_installation_id"
-    t.integer  "status",                default: 0, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "device_id",             limit: 4
+    t.integer  "batch_installation_id", limit: 4
+    t.integer  "status",                limit: 4, default: 0, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_index "installations", ["batch_installation_id"], name: "index_installations_on_batch_installation_id", using: :btree

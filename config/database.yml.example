@@ -1,23 +1,20 @@
+common: &common
+  adapter: mysql2
+  encoding: utf8
+  database: onemdm_dev
+  pool: 5
+  host: localhost
+  username: user
+  password: password
+
 development:
-   adapter: postgresql
-   encoding: utf8
-   host: localhost
-   database: onemdm_dev
-   username: postgres
-   password: postgres
+  <<: *common
+  database: onemdm_dev
 
 test:
-   adapter: postgresql
-   encoding: utf8
-   host: localhost
-   database: onemdm_test
-   username: postgres
-   password: postgres
+  <<: *common
+  database: onemdm_test
 
 production:
-   adapter: postgresql
-   encoding: utf8
-   host: localhost
-   database: onemdm_production
-   username: postgres
-   password: postgres
+  <<: *common
+  database: onemdm_production

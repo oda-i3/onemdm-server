@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :device do
     model "LGE - Nexus 5"
     unique_id "aa55589dd10a8819"

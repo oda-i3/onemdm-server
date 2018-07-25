@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :batch_installation do
     association :app
   end

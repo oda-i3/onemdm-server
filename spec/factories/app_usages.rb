@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :app_usage do
     package_name "com.facebook.katana"
     usage_duration_in_seconds 7000
