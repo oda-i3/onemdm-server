@@ -6,7 +6,7 @@ RSpec.describe Installation, type: :model do
 
   # Create Installation Model [Device ID, batch installation ID, status(Pushed, Downloaded, Cancelled, Installed)]
   describe "Installation status" do
-    let!(:installation){FactoryGirl.create(:installation)}
+    let!(:installation){FactoryBot.create(:installation)}
     it "Default status" do
       expect(installation.status).to eql Installation.statuses.keys[0]
     end
@@ -31,7 +31,7 @@ RSpec.describe Installation, type: :model do
   end
 
   describe "GCM Push " do
-    let(:installation){FactoryGirl.build(:installation)}
+    let(:installation){FactoryBot.build(:installation)}
     
     it "if status is pushed" do
       expect_any_instance_of(GCM).to receive(:send).and_return(installation)

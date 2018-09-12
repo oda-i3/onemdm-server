@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe HeartbeatsController, type: :controller do
   
   context "POST #create" do
-    let(:heartbeat) {FactoryGirl.create(:heartbeat)}
+    let(:heartbeat) {FactoryBot.create(:heartbeat)}
     
     before(:each) do
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(heartbeat.device.access_token)

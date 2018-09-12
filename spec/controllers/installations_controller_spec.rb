@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe InstallationsController, type: :controller do
-  let(:installation) {FactoryGirl.create(:installation)}
+  let(:installation) {FactoryBot.create(:installation)}
   let(:device){installation.device}
   context "With Authentication" do
     before(:each)do 

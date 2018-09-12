@@ -25,7 +25,7 @@ RSpec.describe Device, type: :model do
   end
 
   describe "Device status" do
-    let!(:device){FactoryGirl.create(:device)}
+    let!(:device){FactoryBot.create(:device)}
     it "Active" do
       expect(device.status).to eql Device.statuses.keys[0]
     end
